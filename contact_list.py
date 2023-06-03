@@ -1,42 +1,58 @@
 
-# Словник контактів
+"""
+Словник контактів
+"""
 contacts = {'Pavlo': '0699999999',
                   'Ruslan': '078888887',
                   'Stefaniya': '4532221111'
 }
 
-# Парсер команд
+"""
+ Парсер команд
+"""
 def parse_command(string):
     command_in_string = string.split(' ')
     return command_in_string
 
-# Вітання
+"""
+Вітання
+"""
 def hello_users(string=None):
     print('How can I help you?')
 
-# Додавання нового контакту
+"""
+Додавання нового контакту
+"""
 def add_contact(string):
     name = parse_command(string)[1]
     number = parse_command(string)[2]
     contacts[name] = number
 
-# Функція зміни наявного контакту
+"""
+Функція зміни наявного контакту
+"""
 def change_contact(string):
     name = parse_command(string)[1]
     number = parse_command(string)[2]
     contacts[name] = number
 
-# Функція виводу номеру телефона 
+"""
+Функція виводу номеру телефона 
+"""
 def print_phone(string):
     name = parse_command(string)[1]
     print(contacts[name])
 
-# Функція виводу всіх контактів
+"""
+Функція виводу всіх контактів
+"""
 def show_all():
     for name, number in contacts.items():
         print(name, number)
 
-# Словник команд
+"""
+Словник команд
+"""
 command_dict = {
     'hello': hello_users,
     'add': add_contact,
@@ -45,7 +61,9 @@ command_dict = {
     'show all': show_all
 }
 
-# Декоратор для обробки помилок вводу
+"""
+Декоратор для обробки помилок вводу
+"""
 def input_error(func):
     def wrapper():
         while True:
@@ -63,7 +81,9 @@ def input_error(func):
                 continue
     return wrapper
 
-# Основна функція, що взаємодіє з користувачем
+"""
+Основна функція, що взаємодіє з користувачем
+"""
 @input_error
 def main():
     while True:
